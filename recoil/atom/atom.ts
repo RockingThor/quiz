@@ -1,6 +1,16 @@
 import { atom } from "recoil";
 
-const progressState = atom({
+export interface Data {
+  level: number;
+  prev: string;
+  curr: string;
+}
+
+export const progressState = atom<Data>({
   key: "progress", // unique ID (with respect to other atoms/selectors)
-  default: 0, // default value (aka initial value)
+  default: {
+    level: 0,
+    prev: "",
+    curr: "",
+  }, // default value (aka initial value)
 });

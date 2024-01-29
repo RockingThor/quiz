@@ -14,6 +14,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useState } from "react";
+import Main from "@/components/cards/main";
 
 const formSchema = z.object({
   password: z
@@ -33,6 +35,7 @@ const formSchema = z.object({
     }),
 });
 export default function Home() {
+  const [isStarted, setIsStarted] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,7 +43,9 @@ export default function Home() {
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    if (values.password.length >= 8) {
+      setIsStarted(true);
+    }
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -56,7 +61,11 @@ export default function Home() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Enter your password" {...field} />
+                    <Input
+                      placeholder="Enter your password"
+                      {...field}
+                      size={100}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -66,7 +75,7 @@ export default function Home() {
           </form>
         </Form>
       </div>
-      <div className=""></div>
+      {isStarted && <div className=""></div>}
     </main>
   );
 }
