@@ -8,8 +8,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cardData } from "@/constants";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { progressState } from "@/recoil/atom/atom";
+import { getCurrentLevel } from "@/recoil/selectors/selectors";
 
 const Main = ({ num }: { num: number }) => {
+  const [progress, setProgress] = useRecoilState(progressState);
+  const level = useRecoilValue(getCurrentLevel);
   return (
     <Card>
       <CardHeader>
