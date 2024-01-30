@@ -1,3 +1,5 @@
+import { Question, QuestionCategory } from "./interfaces";
+
 export const cardData = [
   {
     title: "Solve the below equation and find the missing number",
@@ -49,5 +51,31 @@ export const cardData = [
     title: "Solve the below equation and find the missing number",
     description: "Card description",
     card: "Math6",
+  },
+];
+
+export const questions: Question[] = [
+  {
+    id: 1,
+    question: "What is the capital of India?",
+    answer: "Delhi",
+  },
+  {
+    id: 2,
+    question: "Say my name",
+    answer: "Heisenberg",
+  },
+];
+
+export const questionCategory: QuestionCategory[] = [
+  {
+    category: "Math",
+    start: 1,
+    end: 100,
+  },
+  {
+    category: "GI",
+    start: 101,
+    end: 200,
   },
 ];
