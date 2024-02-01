@@ -8,14 +8,16 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { useState } from "react";
 import Main from "@/components/cards/main";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { progressState } from "@/recoil/atom/atom";
+import { getCurrentLevel } from "@/recoil/selectors/selectors";
+import { getRandomNumber } from "@/utils";
 
 const formSchema = z.object({
   password: z
@@ -36,6 +38,10 @@ const formSchema = z.object({
 });
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
+  const [progress, setProgress] = useRecoilState(progressState);
+  const level = useRecoilValue(getCurrentLevel);
+  9;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,6 +51,7 @@ export default function Home() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     if (values.password.length >= 8) {
       setIsStarted(true);
+      let num = getRandomNumber(0, 10);
     }
   }
   return (
