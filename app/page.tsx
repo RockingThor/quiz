@@ -18,6 +18,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { progressState } from "@/recoil/atom/atom";
 import { getCurrentLevel } from "@/recoil/selectors/selectors";
 import { getRandomNumber } from "@/utils";
+import LevelSelector from "@/components/cards/level-selector";
 
 const formSchema = z.object({
   password: z
@@ -56,33 +57,39 @@ export default function Home() {
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className=""></div>
       <div className="">
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className=" flex space-x-4"
-          >
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your password"
-                      {...field}
-                      size={100}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit">Submit</Button>
-          </form>
-        </Form>
+        <div className="">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className=" flex space-x-4"
+            >
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your password"
+                        {...field}
+                        size={100}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">Submit</Button>
+            </form>
+          </Form>
+        </div>
+        {isStarted && <div className=""></div>}
       </div>
-      {isStarted && <div className=""></div>}
+      <div className="">
+        <LevelSelector />
+      </div>
     </main>
   );
 }
